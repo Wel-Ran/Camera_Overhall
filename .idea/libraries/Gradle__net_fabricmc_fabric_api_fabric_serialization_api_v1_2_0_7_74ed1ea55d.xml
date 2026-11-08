@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-serialization-api-v1:2.0.7+74ed1ea55d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-serialization-api-v1" version="2.0.7+74ed1ea55d" baseVersion="2.0.7+74ed1ea55d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-serialization-api-v1/2.0.7+74ed1ea55d/6461e300b93b46986d74f092660dd9d39a1125c0/fabric-serialization-api-v1-2.0.7+74ed1ea55d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-serialization-api-v1/2.0.7+74ed1ea55d/635cac1f5ed6b3d77df6058b0e4bcb6aada99052/fabric-serialization-api-v1-2.0.7+74ed1ea55d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

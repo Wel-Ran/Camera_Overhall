@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-api-lookup-api-v1:2.0.24+3434d6d95d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-api-lookup-api-v1" version="2.0.24+3434d6d95d" baseVersion="2.0.24+3434d6d95d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-api-lookup-api-v1/2.0.24+3434d6d95d/29c412a6baf8e69bf71cab6b7a65b5096ff29a3/fabric-api-lookup-api-v1-2.0.24+3434d6d95d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-api-lookup-api-v1/2.0.24+3434d6d95d/42e359b25320aa5604b416bcac568f31c0406e2b/fabric-api-lookup-api-v1-2.0.24+3434d6d95d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

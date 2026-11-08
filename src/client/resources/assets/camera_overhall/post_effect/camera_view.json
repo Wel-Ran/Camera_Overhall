@@ -1,0 +1,74 @@
+{
+  "targets": {
+    "swap": {}
+  },
+  "passes": [
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "camera_overhall:post/camera_view",
+      "inputs": [
+        {
+          "sampler_name": "In",
+          "target": "minecraft:main",
+          "bilinear": true
+        }
+      ],
+      "output": "swap",
+      "uniforms": {
+        "CameraView": [
+          {
+            "name": "Grayness",
+            "type": "float",
+            "value": 1.0
+          },
+          {
+            "name": "Darkness",
+            "type": "float",
+            "value": 0.3
+          },
+          {
+            "name": "Focus",
+            "type": "float",
+            "value": 0.0
+          },
+          {
+            "name": "Zoom",
+            "type": "float",
+            "value": 1.0
+          },
+          {
+            "name": "DistortionTime",
+            "type": "float",
+            "value": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "minecraft:post/blit",
+      "inputs": [
+        {
+          "sampler_name": "In",
+          "target": "swap",
+          "bilinear": true
+        }
+      ],
+      "output": "minecraft:main",
+      "uniforms": {
+        "BlitConfig": [
+          {
+            "name": "ColorModulate",
+            "type": "vec4",
+            "value": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

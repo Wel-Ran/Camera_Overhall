@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-rendering-fluids-v1:6.0.6+3434d6d95d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-rendering-fluids-v1" version="6.0.6+3434d6d95d" baseVersion="6.0.6+3434d6d95d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-rendering-fluids-v1/6.0.6+3434d6d95d/f346710e5fb0751998cb84d4772b1b2827e1ad57/fabric-rendering-fluids-v1-6.0.6+3434d6d95d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-rendering-fluids-v1/6.0.6+3434d6d95d/f579c8bf7ab0feaee37fc23e99a20aa15bc0beea/fabric-rendering-fluids-v1-6.0.6+3434d6d95d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

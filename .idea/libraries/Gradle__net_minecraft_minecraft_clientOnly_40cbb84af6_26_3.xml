@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.minecraft:minecraft-clientOnly-40cbb84af6:26.3" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.minecraft" artifactId="minecraft-clientOnly-40cbb84af6" version="26.3" baseVersion="26.3" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-clientOnly-40cbb84af6/26.3/minecraft-clientOnly-40cbb84af6-26.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-clientOnly-40cbb84af6/26.3/minecraft-clientOnly-40cbb84af6-26.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-dimensions-v1:5.1.20+5af7744b5d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-dimensions-v1" version="5.1.20+5af7744b5d" baseVersion="5.1.20+5af7744b5d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-dimensions-v1/5.1.20+5af7744b5d/f2e857615f63474a7e2c77377cfd0e95d991bb12/fabric-dimensions-v1-5.1.20+5af7744b5d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-dimensions-v1/5.1.20+5af7744b5d/f6630fa3617270c68d6a69dfa1cc6c048c29cd55/fabric-dimensions-v1-5.1.20+5af7744b5d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

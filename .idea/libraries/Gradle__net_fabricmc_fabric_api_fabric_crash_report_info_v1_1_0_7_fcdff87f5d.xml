@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-crash-report-info-v1:1.0.7+fcdff87f5d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-crash-report-info-v1" version="1.0.7+fcdff87f5d" baseVersion="1.0.7+fcdff87f5d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-crash-report-info-v1/1.0.7+fcdff87f5d/a5531952f47841e359bc2ca8cb807add8c76c5c5/fabric-crash-report-info-v1-1.0.7+fcdff87f5d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-crash-report-info-v1/1.0.7+fcdff87f5d/5c453c190a007046fc6e91295637b3199a21f61c/fabric-crash-report-info-v1-1.0.7+fcdff87f5d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

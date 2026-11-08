@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-vma:natives-windows-arm64:3.4.3" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.lwjgl" artifactId="lwjgl-vma" version="3.4.3" baseVersion="3.4.3" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/f895ba1ad2811d1461e5b46e5057ddcbfd65841e/lwjgl-vma-3.4.3-natives-windows-arm64.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/f353274acc5888198a607720228a7c483f7194ab/lwjgl-vma-3.4.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

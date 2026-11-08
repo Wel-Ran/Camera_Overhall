@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-resource-conditions-api-v1:6.2.0+0d124ae85d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-resource-conditions-api-v1" version="6.2.0+0d124ae85d" baseVersion="6.2.0+0d124ae85d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-resource-conditions-api-v1/6.2.0+0d124ae85d/bf3ef3a1aa93f1f80bdaee508fa03ec9461e9b1f/fabric-resource-conditions-api-v1-6.2.0+0d124ae85d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-resource-conditions-api-v1/6.2.0+0d124ae85d/64a9dbd039c1ed4bef34cc5b73c3a7e32ebc6d0d/fabric-resource-conditions-api-v1-6.2.0+0d124ae85d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-data-attachment-api-v1:2.2.32+b9b88df45d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-data-attachment-api-v1" version="2.2.32+b9b88df45d" baseVersion="2.2.32+b9b88df45d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-data-attachment-api-v1/2.2.32+b9b88df45d/6253421f94d1a20ab055272e93db76ae091ceaa7/fabric-data-attachment-api-v1-2.2.32+b9b88df45d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-data-attachment-api-v1/2.2.32+b9b88df45d/158afe82936daafa310f6eae3fa130d6e4e1d064/fabric-data-attachment-api-v1-2.2.32+b9b88df45d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

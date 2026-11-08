@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-debug-api-v1:1.0.5+5af7744b5d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-debug-api-v1" version="1.0.5+5af7744b5d" baseVersion="1.0.5+5af7744b5d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-debug-api-v1/1.0.5+5af7744b5d/ef466d3f3f8bbf7dc42feac31bc73e7a2fd6c816/fabric-debug-api-v1-1.0.5+5af7744b5d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-debug-api-v1/1.0.5+5af7744b5d/b6f9b3dd8e99667481d94de33ce20ae350d2ae46/fabric-debug-api-v1-1.0.5+5af7744b5d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-advancement-api-v1:1.0.1+38c7a2d55d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-advancement-api-v1" version="1.0.1+38c7a2d55d" baseVersion="1.0.1+38c7a2d55d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-advancement-api-v1/1.0.1+38c7a2d55d/433bdaccc7b06f15ead341420b80052a0b6b644e/fabric-advancement-api-v1-1.0.1+38c7a2d55d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-advancement-api-v1/1.0.1+38c7a2d55d/f705d7a3c3c01a02ce300eb2788b3c93e441bfbe/fabric-advancement-api-v1-1.0.1+38c7a2d55d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

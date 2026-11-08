@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.welran.camera.camera_overhall.mixin.client",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "SkullBlockEntityAccessor",
+    "GameRendererCameraViewMixin",
+    "SkullBlockRendererMixin",
+    "CameraEyeHeightMixin",
+    "CameraFovZoomMixin",
+    "GuiHudMixin",
+    "CameraViewPostChainMixin",
+    "CameraViewPostPassMixin",
+    "LocalPlayerCameraRenderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

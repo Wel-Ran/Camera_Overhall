@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-creative-tab-api-v1:5.0.22+fcdff87f5d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-creative-tab-api-v1" version="5.0.22+fcdff87f5d" baseVersion="5.0.22+fcdff87f5d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-creative-tab-api-v1/5.0.22+fcdff87f5d/371df7f8dc913a39cf671333b76f9bae303f081d/fabric-creative-tab-api-v1-5.0.22+fcdff87f5d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-creative-tab-api-v1/5.0.22+fcdff87f5d/2d74f7387d774f83d207cb350f4c254af63859c9/fabric-creative-tab-api-v1-5.0.22+fcdff87f5d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

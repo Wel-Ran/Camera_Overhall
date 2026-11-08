@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc.fabric-api:fabric-entity-events-v1:6.0.4+3434d6d95d" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc.fabric-api" artifactId="fabric-entity-events-v1" version="6.0.4+3434d6d95d" baseVersion="6.0.4+3434d6d95d" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-entity-events-v1/6.0.4+3434d6d95d/731754a9bdfc6784a41d8fb17cd6c08f58fe31e0/fabric-entity-events-v1-6.0.4+3434d6d95d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-entity-events-v1/6.0.4+3434d6d95d/a8f0c86a4e632c0335d8b6666e11f1a5e024700c/fabric-entity-events-v1-6.0.4+3434d6d95d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
