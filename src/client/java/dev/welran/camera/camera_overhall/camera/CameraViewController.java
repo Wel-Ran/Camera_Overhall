@@ -15,7 +15,7 @@ public final class CameraViewController {
     private static float focusProgress = 0.0F;
     private static float previousFocusProgress = 0.0F;
 
-    private static final float FOCUS_SMOOTHING = 0.25F;
+    private static final float FOCUS_SMOOTHING = 0.10F;
 
 
 
@@ -39,17 +39,19 @@ public final class CameraViewController {
 
 
 
-    private static final float ROTATION_STEP = 33.75F;
-    private static final float ROTATION_SMOOTHING = 0.25F;
-
-    private static final float ROTATION_HOLD_SPEED = 1.5F;
+    private  static  final float ROTATION_SMOOTHING = 0.25F;
+    private  static  final  float ROTATION_HOLD_SP = 1.5F;
+    private static  final float ROTATION_LIM = 33.5F;
 
     private static final float MIN_PITCH = -90.0F;
     private static final float MAX_PITCH = 90.0F;
 
-    private static final float MIN_ZOOM = 1.0F;
-    private static final float MAX_ZOOM = 4.0F;
 
+    private static float baseYaw;
+    private static float basePitch;
+
+    private static final float MIN_ZOOM = 1.0F;
+    private static final float MAX_ZOOM = 3.0F;
 
 
     private static boolean rotateUp;
@@ -98,6 +100,12 @@ public final class CameraViewController {
         }
 
         currentCamera = entry;
+
+        focusProgress = 0.0F;
+        previousFocusProgress = 0.0F;
+
+        baseYaw = entry.yaw();
+        basePitch = entry.pitch();
 
         targetYaw = entry.yaw();
         targetPitch = entry.pitch();
@@ -220,15 +228,20 @@ public final class CameraViewController {
                         - (rotateLeft ? 1.0F : 0.0F);
 
         float pitchDirection =
-                (rotateUp ? 1.0F : 0.0F)
-                        - (rotateDown ? 1.0F : 0.0F);
+                (rotateDown ? 1.0F : 0.0F)
+                        - (rotateUp ? 1.0F : 0.0F);
 
-        targetYaw += yawDirection * ROTATION_HOLD_SPEED;
+        targetYaw = clamp(
+                targetYaw + yawDirection * ROTATION_HOLD_SP,
+                baseYaw - ROTATION_LIM,
+                baseYaw + ROTATION_LIM
+
+        );
 
         targetPitch = clamp(
-                targetPitch + pitchDirection * ROTATION_HOLD_SPEED,
-                MIN_PITCH,
-                MAX_PITCH
+                targetPitch + pitchDirection * ROTATION_HOLD_SP,
+                Math.max(MIN_PITCH, basePitch - ROTATION_LIM),
+                Math.min(MAX_PITCH, basePitch + ROTATION_LIM)
         );
 
 
@@ -295,15 +308,29 @@ public final class CameraViewController {
             return;
         }
 
-        targetYaw += xDirection * ROTATION_STEP;
+        targetYaw = clamp(
+                targetYaw + xDirection * ROTATION_HOLD_SP,
+                baseYaw - ROTATION_LIM,
+                baseYaw + ROTATION_LIM
+        );
 
         targetPitch = clamp(
-                targetPitch + yDirection * ROTATION_STEP,
-                MIN_PITCH,
-                MAX_PITCH
+                targetPitch + yDirection * ROTATION_HOLD_SP,
+                Math.max(MIN_PITCH, basePitch - ROTATION_LIM),
+                Math.min(MAX_PITCH, basePitch + ROTATION_LIM)
         );
     }
 
+    public static void resetRotation() {
+        if (!isActive()) {
+            return;
+        }
+
+        clearRotationInput();
+
+        targetYaw = baseYaw;
+        targetPitch = basePitch;
+    }
 
 
     public static void adjustZoom(double amount) {

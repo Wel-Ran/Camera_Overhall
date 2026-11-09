@@ -12,3 +12,5 @@ A lightweight mod that allows you to set up a camera surveillance network using 
 -Right: A button that opens a full drop-down list of all connected cameras for direct switching.
 
 -Bottom Left: Displays the active network name, along with the current date and local time.
+
+-There are buttons in the bottom center to change the camera rotation and a return button between them

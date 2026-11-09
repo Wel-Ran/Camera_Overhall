@@ -153,7 +153,6 @@ public final class Camera_overhall implements ClientModInitializer {
             return InteractionResult.SUCCESS;
         });
 
-        // Обновление виртуальной камеры каждый клиентский тик
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
 
             CameraViewController.tick();

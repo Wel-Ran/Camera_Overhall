@@ -1,14 +1,20 @@
 
 package dev.welran.camera.camera_overhall.screen;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
+
 import dev.welran.camera.camera_overhall.Camera_overhall;
 import dev.welran.camera.camera_overhall.camera.CameraEntry;
 import dev.welran.camera.camera_overhall.camera.CameraViewController;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 import java.time.LocalDateTime;
@@ -17,8 +23,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import net.minecraft.client.input.MouseButtonEvent;
 
+@NullMarked
 public final class CameraViewScreen extends Screen {
 
     private static final DateTimeFormatter CLOCK_FORMAT =
@@ -56,30 +62,194 @@ public final class CameraViewScreen extends Screen {
 
     private static final int TEXT_COLOR = 0xFFFFFFFF;
 
+    private static final int ROT_BUTTON_SZ = 22;
+    private static final int ROT_BUTTON_GAP = 16;
+    private static final int ROT_BOTTOM_OFF = 58;
+
     private final String networkId;
     private final String monitorKey;
-    private final Screen returnScreen;
-
+    @Nullable private final Screen returnScreen;
     private CameraEntry currentCamera;
 
     private boolean panelOpen = false;
+    private boolean rotateUpHeld = false;
+    private boolean rotateDownHeld = false;
+    private boolean rotateLeftHeld = false;
+    private boolean rotateRightHeld = false;
 
     private float panelProgress = 0.0F;
     private float animatedProgress = 0.0F;
 
-    private Button arrowButton;
-    private Button previousCameraButton;
-    private Button nextCameraButton;
+    @Nullable private Button arrowButton;
+    @Nullable private Button previousCameraButton;
+    @Nullable private Button nextCameraButton;
+
+    @Nullable private RotationButton rotateUpButton;
+    @Nullable private RotationButton rotateDownButton;
+    @Nullable private RotationButton rotateLeftButton;
+    @Nullable private RotationButton rotateRightButton;
+
+    @Nullable private TestHoldButton testHoldButton;
 
     private final List<Button> cameraButtons = new ArrayList<>();
     private final List<CameraEntry> availableCameras = new ArrayList<>();
+
+
+    private class TestHoldButton extends AbstractWidget {
+
+        public TestHoldButton(int x, int y) {
+            super(
+                    x,
+                    y,
+                    ROT_BUTTON_SZ,
+                    ROT_BUTTON_SZ,
+                    Component.literal("↺")
+            );
+        }
+
+        @Override
+        public void onClick(MouseButtonEvent event, boolean doubleClick) {
+            clearRotationInput();
+            CameraViewController.resetRotation();
+        }
+
+        @Override
+        protected void extractWidgetRenderState(
+                GuiGraphicsExtractor graphics,
+                int mouseX,
+                int mouseY,
+                float delta
+        ) {
+            boolean hovered = mouseX >= getX()
+                    && mouseX < getX() + getWidth()
+                    && mouseY >= getY()
+                    && mouseY < getY() + getHeight();
+
+            int color = hovered ? 0xFFAAAAAA : 0xFF555555;
+
+            graphics.fill(
+                    getX(),
+                    getY(),
+                    getX() + getWidth(),
+                    getY() + getHeight(),
+                    0xFF000000
+            );
+
+            graphics.fill(
+                    getX() + 1,
+                    getY() + 1,
+                    getX() + getWidth() - 1,
+                    getY() + getHeight() - 1,
+                    color
+            );
+
+            graphics.centeredText(
+                    Minecraft.getInstance().font,
+                    getMessage(),
+                    getX() + getWidth() / 2,
+                    getY() + 7,
+                    0xFFFFFFFF
+            );
+        }
+
+        @Override
+        protected void updateWidgetNarration(
+                NarrationElementOutput narration
+        ) {
+            defaultButtonNarrationText(narration);
+        }
+    }
+
+    private class RotationButton extends AbstractWidget {
+
+        private final int direction;
+
+        public RotationButton(
+                int x,
+                int y,
+                String label,
+                int direction
+        ) {
+            super(
+                    x,
+                    y,
+                    ROT_BUTTON_SZ,
+                    ROT_BUTTON_SZ,
+                    Component.literal(label)
+            );
+
+            this.direction = direction;
+        }
+
+        @Override
+        public void onClick(MouseButtonEvent event, boolean doubleClick) {
+            rotateUpHeld = direction == 1;
+            rotateDownHeld = direction == 2;
+            rotateLeftHeld = direction == 3;
+            rotateRightHeld = direction == 4;
+
+            CameraViewController.setRotationInput(
+                    rotateUpHeld,
+                    rotateDownHeld,
+                    rotateLeftHeld,
+                    rotateRightHeld
+            );
+        }
+
+        @Override
+        protected void extractWidgetRenderState(
+                GuiGraphicsExtractor graphics,
+                int mouseX,
+                int mouseY,
+                float delta
+        ) {
+            boolean hovered = mouseX >= getX()
+                    && mouseX < getX() + getWidth()
+                    && mouseY >= getY()
+                    && mouseY < getY() + getHeight();
+
+            int color = hovered ? 0xFFAAAAAA : 0xFF555555;
+
+            graphics.fill(
+                    getX(),
+                    getY(),
+                    getX() + getWidth(),
+                    getY() + getHeight(),
+                    0xFF000000
+            );
+
+            graphics.fill(
+                    getX() + 1,
+                    getY() + 1,
+                    getX() + getWidth() - 1,
+                    getY() + getHeight() - 1,
+                    color
+            );
+
+            graphics.centeredText(
+                    Minecraft.getInstance().font,
+                    getMessage(),
+                    getX() + getWidth() / 2,
+                    getY() + 7,
+                    0xFFFFFFFF
+            );
+        }
+
+        @Override
+        protected void updateWidgetNarration(
+                NarrationElementOutput narration
+        ) {
+            defaultButtonNarrationText(narration);
+        }
+    }
+
+
 
     public CameraViewScreen(
             String networkId,
             String monitorKey,
             CameraEntry initialCamera,
-            Screen returnScreen
-    ) {
+            @Nullable Screen returnScreen    ) {
         super(Component.literal("Camera Overhall"));
 
         this.networkId = networkId;
@@ -88,14 +258,7 @@ public final class CameraViewScreen extends Screen {
         this.returnScreen = returnScreen;
     }
 
-    @Override
-    public boolean mouseReleased(MouseButtonEvent event) {
-        boolean result = super.mouseReleased(event);
 
-        clearFocus();
-
-        return result;
-    }
 
     @Override
     protected void init() {
@@ -109,8 +272,11 @@ public final class CameraViewScreen extends Screen {
         createArrowButton();
         createTopNavigationButtons();
         createCameraButtons();
+        createRotationButtons();
 
         updateWidgetPositions();
+        refreshButtons();
+        updateRotationButtonPositions();
     }
 
     private List<CameraEntry> getAvailableCameras() {
@@ -124,6 +290,8 @@ public final class CameraViewScreen extends Screen {
                 .limit(MAX_CAMERAS)
                 .toList();
     }
+
+
 
     private void createArrowButton() {
         arrowButton = Button.builder(
@@ -166,14 +334,15 @@ public final class CameraViewScreen extends Screen {
     }
 
     private void cycleCamera(int direction) {
-        if (availableCameras.size() < 2 || currentCamera == null) {
+        if (availableCameras.size() < 2) {
             return;
         }
 
         int currentIndex = 0;
 
         for (int i = 0; i < availableCameras.size(); i++) {
-            if (availableCameras.get(i).cameraIndex() == currentCamera.cameraIndex()) {
+            if (availableCameras.get(i).cameraIndex()
+                    == currentCamera.cameraIndex()) {
                 currentIndex = i;
                 break;
             }
@@ -205,6 +374,104 @@ public final class CameraViewScreen extends Screen {
             addRenderableWidget(button);
         }
     }
+
+
+
+    private void createRotationButtons() {
+        rotateUpButton = createRotationButton("↑", 1);
+        rotateDownButton = createRotationButton("↓", 2);
+        rotateLeftButton = createRotationButton("←", 3);
+        rotateRightButton = createRotationButton("→", 4);
+
+        testHoldButton = new TestHoldButton(0, 0);
+
+        addRenderableWidget(rotateUpButton);
+        addRenderableWidget(rotateDownButton);
+        addRenderableWidget(rotateLeftButton);
+        addRenderableWidget(rotateRightButton);
+        addRenderableWidget(testHoldButton);
+    }
+
+    private RotationButton createRotationButton(
+            String label,
+            int direction
+    ) {
+        return new RotationButton(0, 0, label, direction);
+    }
+
+    @Override
+    public boolean mouseClicked(
+            MouseButtonEvent event,
+            boolean doubleClick
+    ) {
+        return super.mouseClicked(event, doubleClick);
+    }
+
+    @Override
+    public boolean mouseReleased(MouseButtonEvent event) {
+
+
+        clearRotationInput();
+
+        return super.mouseReleased(event);
+    }
+
+    private void clearRotationInput() {
+        rotateUpHeld = false;
+        rotateDownHeld = false;
+        rotateLeftHeld = false;
+        rotateRightHeld = false;
+
+        CameraViewController.setRotationInput(
+                false,
+                false,
+                false,
+                false
+        );
+    }
+
+    private int getRotationCenterX() {
+        return width / 2;
+    }
+
+    private int getRotationCenterY() {
+        return height - ROT_BOTTOM_OFF;
+    }
+
+    private void updateRotationButtonPositions() {
+        int cx = getRotationCenterX();
+        int cy = getRotationCenterY();
+
+        int size = ROT_BUTTON_SZ;
+        int gap = ROT_BUTTON_GAP;
+
+        if (rotateUpButton != null) {
+            rotateUpButton.setX(cx - size / 2);
+            rotateUpButton.setY(cy - size - gap);
+        }
+
+        if (rotateDownButton != null) {
+            rotateDownButton.setX(cx - size / 2);
+            rotateDownButton.setY(cy + gap);
+        }
+
+        if (rotateLeftButton != null) {
+            rotateLeftButton.setX(cx - size - gap);
+            rotateLeftButton.setY(cy - size / 2);
+        }
+
+        if (rotateRightButton != null) {
+            rotateRightButton.setX(cx + gap);
+            rotateRightButton.setY(cy - size / 2);
+        }
+
+        if (testHoldButton != null) {
+            testHoldButton.setX(cx - size / 2);
+            testHoldButton.setY(cy - size / 2);
+        }
+    }
+
+
 
     private float easeInOut(float value) {
         return value * value * (3.0F - 2.0F * value);
@@ -276,8 +543,7 @@ public final class CameraViewScreen extends Screen {
                     startY + row * (BUTTON_HEIGHT + BUTTON_GAP)
             );
 
-            boolean isCurrent = currentCamera != null
-                    && currentCamera.cameraIndex()
+            boolean isCurrent = currentCamera.cameraIndex()
                     == availableCameras.get(i).cameraIndex();
 
             button.visible = animatedProgress >= 0.05F;
@@ -288,11 +554,14 @@ public final class CameraViewScreen extends Screen {
         }
     }
 
+
+
     @Override
     public void tick() {
         super.tick();
 
         float target = panelOpen ? 1.0F : 0.0F;
+        boolean layoutChanged = false;
 
         if (Math.abs(panelProgress - target) > ANIMATION_EPSILON) {
             panelProgress += (target - panelProgress) * ANIMATION_SPEED;
@@ -302,17 +571,29 @@ public final class CameraViewScreen extends Screen {
             }
 
             animatedProgress = easeInOut(panelProgress);
+            layoutChanged = true;
         }
 
-        updateWidgetPositions();
+        if (layoutChanged) {
+            updateWidgetPositions();
+        }
 
+        CameraViewController.setRotationInput(
+                rotateUpHeld,
+                rotateDownHeld,
+                rotateLeftHeld,
+                rotateRightHeld
+        );
     }
 
+
+
     private void switchCamera(CameraEntry camera) {
-        if (currentCamera != null
-                && currentCamera.cameraIndex() == camera.cameraIndex()) {
+        if (currentCamera.cameraIndex() == camera.cameraIndex()) {
             return;
         }
+
+        clearRotationInput();
 
         Minecraft client = Minecraft.getInstance();
 
@@ -322,14 +603,17 @@ public final class CameraViewScreen extends Screen {
 
         currentCamera = camera;
 
+        updateWidgetPositions();
+        refreshButtons();
+
         Camera_overhall.getInstance()
                 .getConfig()
                 .saveLastSelectedCamera(
                         monitorKey,
                         camera.cameraIndex()
                 );
-
     }
+
     private void refreshButtons() {
         if (arrowButton != null) {
             arrowButton.setMessage(
@@ -344,7 +628,35 @@ public final class CameraViewScreen extends Screen {
         if (nextCameraButton != null) {
             nextCameraButton.setMessage(Component.literal("›"));
         }
+
+        if (rotateUpButton != null) {
+            rotateUpButton.setMessage(Component.literal("↑"));
+        }
+
+        if (rotateDownButton != null) {
+            rotateDownButton.setMessage(Component.literal("↓"));
+        }
+
+        if (rotateLeftButton != null) {
+            rotateLeftButton.setMessage(Component.literal("←"));
+        }
+
+        if (rotateRightButton != null) {
+            rotateRightButton.setMessage(Component.literal("→"));
+        }
     }
+
+    @Override
+    public void mouseMoved(double mouseX, double mouseY) {
+        super.mouseMoved(mouseX, mouseY);
+
+        if (getFocused() instanceof AbstractWidget widget
+                && !widget.isMouseOver(mouseX, mouseY)) {
+            setFocused(null);
+        }
+    }
+
+
 
     @Override
     public boolean mouseScrolled(
@@ -370,6 +682,8 @@ public final class CameraViewScreen extends Screen {
     public boolean isPauseScreen() {
         return false;
     }
+
+
 
     private void drawTopHousing(
             GuiGraphicsExtractor graphics,
@@ -424,6 +738,8 @@ public final class CameraViewScreen extends Screen {
                 PANEL_BORDER
         );
     }
+
+
 
     private void drawInfoPanel(GuiGraphicsExtractor graphics) {
         int x = 0;
@@ -500,6 +816,8 @@ public final class CameraViewScreen extends Screen {
                 PANEL_BORDER
         );
     }
+
+
 
     @Override
     public void extractBackground(
@@ -628,6 +946,7 @@ public final class CameraViewScreen extends Screen {
         );
     }
 
+
     @Override
     public void extractRenderState(
             GuiGraphicsExtractor graphics,
@@ -637,9 +956,9 @@ public final class CameraViewScreen extends Screen {
     ) {
         super.extractRenderState(graphics, mouseX, mouseY, delta);
 
-        String cameraLabel = currentCamera == null
-                ? "CAMERA UNAVAILABLE"
-                : "CAMERA " + currentCamera.cameraIndex();
+
+
+            String cameraLabel = "CAMERA " + currentCamera.cameraIndex();
 
         graphics.centeredText(
                 font,
@@ -662,14 +981,17 @@ public final class CameraViewScreen extends Screen {
                 TEXT_COLOR
         );
 
-        LocalDateTime moscowTime = LocalDateTime.now(ZoneId.systemDefault());
+        LocalDateTime moscowTime =
+                LocalDateTime.now(ZoneId.systemDefault());
 
         String clock = moscowTime.format(CLOCK_FORMAT);
         String date = moscowTime.format(DATE_FORMAT);
 
         drawInfoPanel(graphics);
 
-        int panelCenterX = INFO_PANEL_WIDTH / 2 - INFO_PANEL_CUT / 2;
+        int panelCenterX =
+                INFO_PANEL_WIDTH / 2 - INFO_PANEL_CUT / 2;
+
         int panelY = height - INFO_PANEL_HEIGHT;
 
         graphics.centeredText(
@@ -683,17 +1005,22 @@ public final class CameraViewScreen extends Screen {
         graphics.centeredText(
                 font,
                 Component.literal(date + "  " + clock),
-                panelCenterX,
+                panelCenterX + 3,
                 panelY + 17,
                 TEXT_COLOR
         );
     }
+
 
     @Override
     public void onClose() {
         Minecraft client = Minecraft.getInstance();
 
         CameraViewController.stop(client);
+
+
+
+        clearRotationInput();
 
         client.gui.setScreen(returnScreen);
     }
