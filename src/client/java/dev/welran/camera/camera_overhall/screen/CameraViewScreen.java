@@ -17,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import net.minecraft.client.input.MouseButtonEvent;
 
 public final class CameraViewScreen extends Screen {
 
@@ -88,6 +89,15 @@ public final class CameraViewScreen extends Screen {
     }
 
     @Override
+    public boolean mouseReleased(MouseButtonEvent event) {
+        boolean result = super.mouseReleased(event);
+
+        clearFocus();
+
+        return result;
+    }
+
+    @Override
     protected void init() {
         super.init();
 
@@ -121,7 +131,6 @@ public final class CameraViewScreen extends Screen {
                 ignored -> {
                     panelOpen = !panelOpen;
                     updateArrowLabel();
-                    updateWidgetPositions();
                 }
         ).bounds(
                 0,
@@ -164,8 +173,7 @@ public final class CameraViewScreen extends Screen {
         int currentIndex = 0;
 
         for (int i = 0; i < availableCameras.size(); i++) {
-            if (availableCameras.get(i).cameraIndex()
-                    == currentCamera.cameraIndex()) {
+            if (availableCameras.get(i).cameraIndex() == currentCamera.cameraIndex()) {
                 currentIndex = i;
                 break;
             }
@@ -294,9 +302,10 @@ public final class CameraViewScreen extends Screen {
             }
 
             animatedProgress = easeInOut(panelProgress);
-
-            updateWidgetPositions();
         }
+
+        updateWidgetPositions();
+
     }
 
     private void switchCamera(CameraEntry camera) {
@@ -320,7 +329,21 @@ public final class CameraViewScreen extends Screen {
                         camera.cameraIndex()
                 );
 
-        updateWidgetPositions();
+    }
+    private void refreshButtons() {
+        if (arrowButton != null) {
+            arrowButton.setMessage(
+                    Component.literal(panelOpen ? ">" : "<")
+            );
+        }
+
+        if (previousCameraButton != null) {
+            previousCameraButton.setMessage(Component.literal("‹"));
+        }
+
+        if (nextCameraButton != null) {
+            nextCameraButton.setMessage(Component.literal("›"));
+        }
     }
 
     @Override
@@ -639,9 +662,7 @@ public final class CameraViewScreen extends Screen {
                 TEXT_COLOR
         );
 
-        LocalDateTime moscowTime = LocalDateTime.now(
-                ZoneId.of("Europe/Moscow")
-        );
+        LocalDateTime moscowTime = LocalDateTime.now(ZoneId.systemDefault());
 
         String clock = moscowTime.format(CLOCK_FORMAT);
         String date = moscowTime.format(DATE_FORMAT);
@@ -653,7 +674,7 @@ public final class CameraViewScreen extends Screen {
 
         graphics.centeredText(
                 font,
-                Component.literal("СЕТЬ: " + networkId),
+                Component.literal("Network: " + networkId),
                 panelCenterX,
                 panelY + 4,
                 TEXT_COLOR
